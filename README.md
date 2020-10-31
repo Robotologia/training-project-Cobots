@@ -1,2 +1,2 @@
-# training-project-Kobots
-training project Kobots
+# training-project-Cobots
+training project Cobots
