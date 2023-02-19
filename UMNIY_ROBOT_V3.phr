@@ -1,0 +1,93 @@
+#include <platform.h>
+#include <ADC.h>
+
+int main(void)
+{
+s.avto_load(1);	
+s.fast_load(1);	
+	
+
+uint8_t SXVAT=0;	
+	
+SERVO1_SPEED=50;
+SERVO2_SPEED=50;
+SERVO3_SPEED=50;
+SERVO4_SPEED=50;	
+
+SERVO1_FORCE=40;
+SERVO2_FORCE=40;
+SERVO3_FORCE=40;
+SERVO4_FORCE=40;
+MOTOR1_FORCE=200;
+MOTOR2_FORCE=200;	    
+MOTOR1_POSITION=2000; 	 
+MOTOR2_POSITION=2000; 
+
+//SERVO1_POSITION=1100;	
+	
+ while(true)
+{
+	if (INFO_SW==03)
+	{
+////////////////////////////////////////NACHALOCIKLA/////////////////////
+	    if (INFO_L > 70)
+		{
+			
+		 while (( INFO_SERVO1_FORCE < 30)&&(SXVAT!= 1))
+		 {
+		 SERVO1_POSITION = SERVO1_POSITION + 1;	
+		 DELAY_ms(5);	 
+		 } 
+		 if ( INFO_SERVO1_FORCE > 30 )
+		 {
+			 //////////////////////
+		  if ( SERVO1_POSITION > 1850)//& ( INFO_SERVO1_POSITION > 900))
+		  {
+		   SERVO1_POSITION = 800;   
+		   UPR_SOUND = 3;
+		   DELAY_ms(2500);
+		   SXVAT=0;
+		   UPR_SOUND = 6;
+		   DELAY_ms(1500);   
+		  }  
+		  //////////////////////////////////////////////////////////////////////////////////////
+		  if (( SERVO1_POSITION < 1800)&&( SERVO1_POSITION > 1700))
+		  {  
+			SERVO1_POSITION = 800; 
+			UPR_SOUND = 2;
+			DELAY_ms(1500);
+		    SXVAT=0;
+		   // UPR_SOUND = 9;
+			DELAY_ms(1500);   
+		  }  
+		  //////////////////////////////////////////////
+		  
+		  if (( SERVO1_POSITION < 1700)&&( SERVO1_POSITION > 1000))
+		  {  
+			SERVO1_POSITION = 800; 
+			UPR_SOUND = 1;
+			DELAY_ms(1500);
+		    SXVAT=0;
+		    //UPR_SOUND = 9;
+			DELAY_ms(1500);   
+		  }  
+		 }
+	//////////////////////////////////
+		}
+		else
+		{
+		SERVO1_POSITION = 950;
+		//UPR_SOUND = 0;
+		}
+		
+////////////////////////////////////////////////////////////////////////////		
+	}
+	else
+	{
+	MOTOR1_SPEED=0;
+	MOTOR2_SPEED=0;
+	}	
+	DELAY_ms(5);
+ }
+ 
+}
